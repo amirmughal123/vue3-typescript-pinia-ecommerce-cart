@@ -1,7 +1,7 @@
 <template>
   <header class="bg-white">
     <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-      <div class="flex lg:flex-1">
+      <div class="flex lg:flex-1 cursor-pointer" @click="handleHome()">
         <ShoppingCartIcon class="h-10 w-10" />
       </div>
       <div class="lg:flex lg:gap-x-12">
@@ -67,6 +67,10 @@ const handleCart = () => {
 
 const handleProductDetailPage = (id: string) => {
   router.push({ name: 'Product', params: { id } });
+}
+
+const handleHome = () => {
+  router.push({ name: 'products' })
 }
 
 </script>
