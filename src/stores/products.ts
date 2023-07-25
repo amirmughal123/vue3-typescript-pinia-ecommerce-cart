@@ -1,26 +1,7 @@
 import { defineStore } from 'pinia';
 
 import { productItems } from '../constants'
-
-interface ProductDetail {
-  id: string
-  description: string
-  price: number
-  company: string
-  dob: string
-  createdAt: string
-  updatedAt: string
-}
-
-export interface Product {
-  id: number
-  name: string
-  detail: ProductDetail
-}
-
-interface ProductState {
-  items: Product[]
-}
+import type {ProductState, Product} from '../types/product'
 
 export const useProductStore = defineStore({
   id: 'products',

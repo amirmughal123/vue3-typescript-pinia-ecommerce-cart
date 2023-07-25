@@ -17,12 +17,19 @@
           >
             <div class="p-4">
               <div v-for="item in products" :key="item.name" class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                <div class="flex-auto">
-                  <a :href="item.href" class="block font-semibold text-gray-900">
-                    {{ item.name }}
-                    <span class="absolute inset-0" />
-                  </a>
-                  <p class="mt-1 text-gray-600">{{ item.description }}</p>
+                <div class="flex-auto flex justify-between align-middle">
+                  <div>
+                    <a class="block font-semibold text-gray-900">
+                      {{ item.name.toUpperCase() }}<span class="text-gray-400 ml-1">({{ item.quantity  }})</span>
+                      <span class="absolute inset-0" />
+                    </a>
+                  </div>
+                  <button
+                    class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded cursor-pointer z-10"
+                    @click="cartStore.removeProduct(item)"
+                  >
+                    <ArchiveBoxIcon class="h-5 w-5 inline" />
+                  </button>
                 </div>
               </div>
             </div>
@@ -34,15 +41,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/20/solid'
-const products = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#' },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#' },
-  { name: 'Security', description: 'Your customers’ data will be safe and secure', href: '#' },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#' },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#' },
-]
+import { ref, computed } from 'vue'
+import { ChevronDownIcon, ChevronUpIcon, ArchiveBoxIcon } from '@heroicons/vue/20/solid'
+
+import { useCartStore } from '@/stores/cart'
+const cartStore = useCartStore()
+const products = computed(() => cartStore.list)
 
 const isOpen = ref<boolean>(false)
 
