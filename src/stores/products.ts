@@ -20,5 +20,9 @@ export const useProductStore = defineStore({
     fetchAll() {
       this.items = productItems
     },
+    getById(id: any): Product | undefined {
+      const index = this.items.findIndex((item: Product) => item.id === id)
+      return index !== -1 ? this.items[index] : undefined;
+    }
   },
 });

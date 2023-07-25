@@ -1,25 +1,28 @@
 <template>
   <header class="bg-white">
-    <nav class="mx-auto flex max-w-7xl items-center justify-end p-6 lg:px-8" aria-label="Global">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
         <ShoppingCartIcon class="h-10 w-10" />
       </div>
-      <div class="hidden lg:flex lg:gap-x-12">
+      <div class="lg:flex lg:gap-x-12">
         <div class="relative">
           <button @click="handleCart()" class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-            Cart ({{ products.length }})
+            <ShoppingCartIcon class="h-4 w-4" /> ({{ products.length }})
             <ChevronDownIcon v-if="isOpen" class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
             <ChevronUpIcon v-else class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
           </button>
           <div
-            class="absolute -left-48 top-full z-10 mt-3 w-screen max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+            class="absolute -left-48 top-full z-10 mt-3 max-width-cart-item w-screen lg:max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
             :class="{ hidden: !isOpen}"
           >
-            <div class="p-4">
-              <div v-for="item in products" :key="item.name" class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+            <div class="p-4 cursor-pointer">
+              <div 
+                v-for="item in products" :key="item.name"
+                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
+              >
                 <div class="flex-auto flex justify-between align-middle">
                   <div>
-                    <a class="block font-semibold text-gray-900">
+                    <a class="block font-semibold text-gray-900 cursor-pointer" @click="handleProductDetailPage(item.id)">
                       {{ item.name.toUpperCase() }}<span class="text-gray-400 ml-1">({{ item.quantity  }})</span>
                       <span class="absolute inset-0" />
                     </a>
@@ -42,6 +45,9 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useRouter } from "vue-router";
+const router = useRouter();
+
 import {
   ChevronDownIcon,
   ChevronUpIcon,
@@ -59,4 +65,14 @@ const handleCart = () => {
   isOpen.value = !isOpen.value
 }
 
+const handleProductDetailPage = (id: string) => {
+  router.push({ name: 'Product', params: { id } });
+}
+
 </script>
+
+<style>
+  .max-width-cart-item {
+    max-width: -webkit-fill-available;
+  }
+</style>

@@ -9,7 +9,7 @@ export interface ProductDetail {
 }
 
 export interface Product {
-  id: number
+  id: string
   name: string
   details: ProductDetail
 }
