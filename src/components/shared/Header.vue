@@ -2,7 +2,7 @@
   <header class="bg-white">
     <nav class="mx-auto flex max-w-7xl items-center justify-end p-6 lg:px-8" aria-label="Global">
       <div class="flex lg:flex-1">
-        Shopping Cart
+        <ShoppingCartIcon class="h-10 w-10" />
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <div class="relative">
@@ -42,7 +42,12 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { ChevronDownIcon, ChevronUpIcon, ArchiveBoxIcon } from '@heroicons/vue/20/solid'
+import {
+  ChevronDownIcon,
+  ChevronUpIcon,
+  ArchiveBoxIcon,
+  ShoppingCartIcon
+} from '@heroicons/vue/20/solid'
 
 import { useCartStore } from '@/stores/cart'
 const cartStore = useCartStore()
