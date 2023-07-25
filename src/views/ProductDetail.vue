@@ -8,7 +8,12 @@
           <p class="leading-relaxed">{{ product?.details?.description }}.</p>
           <div class="flex mt-10">
             <span class="title-font font-medium text-2xl text-gray-900">${{ product?.details?.price }}</span>
-            <button class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded" @click="handleAddToCart(product)">Add to Cart</button>
+            <button
+              class="flex ml-auto px-6 py-2 transition ease-in duration-200 rounded-full hover:bg-gray-800 hover:text-white border-2 border-gray-900 focus:outline-none"
+              @click="handleAddToCart(product)"
+            >
+              Add to cart
+            </button>
           </div>
         </div>
       </div>

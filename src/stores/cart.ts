@@ -24,6 +24,9 @@ export const useCartStore = defineStore({
       if (index !== -1) {
         this.items.splice(index, 1)
       }
+    },
+    clearCart() {
+      this.items = []
     }
   }
 })

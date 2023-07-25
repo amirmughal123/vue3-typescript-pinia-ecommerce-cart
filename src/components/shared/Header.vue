@@ -12,6 +12,7 @@
             <ChevronUpIcon v-else class="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
           </button>
           <div
+            v-if="products.length"
             class="absolute -left-48 top-full z-10 mt-3 max-width-cart-item w-screen lg:max-w-sm overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
             :class="{ hidden: !isOpen}"
           >
@@ -35,6 +36,14 @@
                   </button>
                 </div>
               </div>
+            </div>
+            <div v-if="products.length" class="max-w flex justify-center mb-4">
+              <button
+                class="bg-green-400 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded cursor-pointer z-10"
+                @click="cartStore.clearCart()"
+              >
+                Checkout
+              </button>
             </div>
           </div>
         </div>
